@@ -3,7 +3,7 @@ const defaultsShape = {
   path: 'string',
   detailsURL: 'string',
   success: 'string',
-  failture: 'string'
+  failure: 'string'
 };
 
 function checkForDefaults(defaults) {
@@ -48,7 +48,7 @@ const checkPath = async (robot, context, config) => {
 module.exports = (robot, defaults, configFilename = 'checkpath.yml') => {
 
   checkForDefaults(defaults);
-  
+
 
   const runTests = async context => {
     let config;
