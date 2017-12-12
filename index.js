@@ -47,15 +47,18 @@ const checkPath = async (robot, context, config) => {
  */
 module.exports = (robot, defaults, configFilename = 'checkpath.yml') => {
 
-  let config;
-  try {
-    const {name, path, detailsURL, success, failure} = await context.config(configFilename);
-    config = Object.assign({}, defaults, checkPath);
-    } catch (err) {
-    config = defaults;
-  }
+  checkForDefaults(defaults);
+  
 
   const runTests = async context => {
+    let config;
+    try {
+      const {name, path, detailsURL, success, failure} = await context.config(configFilename);
+      config = Object.assign({}, defaults, checkPath);
+      } catch (err) {
+      config = defaults;
+    }
+
     const pinCheck = await checkPath(robot, context, config);
     return context.github.repos.createStatus(pinCheck);
   }
