@@ -1,0 +1,28 @@
+{
+  "name": "check-path",
+  "version": "0.0.1",
+  "description": "a plugin to remind users to delete branches after merging",
+  "author": "GitHub, Inc.",
+  "license": "ISC",
+  "repository": "https://github.com/teacher-bot/check-path",
+  "private": true,
+  "scripts": {
+    "start": "probot run ./index.js",
+    "test": "xo",
+    "dev": "LOG_LEVEL=trace npm start"
+  },
+  "dependencies": {
+    "probot": "^3.0.3"
+  },
+  "devDependencies": {
+    "localtunnel": "^1.8.2",
+    "xo": "^0.18.2"
+  },
+  "engines": {
+    "node": ">= 7.7.0",
+    "npm": ">= 4.0.0"
+  },
+  "xo": {
+    "space": 2
+  }
+}
