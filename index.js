@@ -16,7 +16,7 @@ function checkForDefaults(defaults) {
  * @param {object} context - Context argument from a Robot .on() hook.
  * @returns {object}
  */
-const checkPath = async (robot, context, config) => {
+const checkPaths = async (robot, context, config) => {
   const {number, pull_request: pr} = context.payload;
   const {data: files} = await context.github.pullRequests.getFiles(context.repo({
     number
@@ -53,13 +53,13 @@ module.exports = (robot, defaults, configFilename = 'checkpath.yml') => {
   const runTests = async context => {
     let config;
     try {
-      const {name, path, detailsURL, success, failure} = await context.config(configFilename);
+      const {checkPath} = await context.config(configFilename);
       config = Object.assign({}, defaults, checkPath);
       } catch (err) {
       config = defaults;
     }
 
-    const pinCheck = await checkPath(robot, context, config);
+    const pinCheck = await checkPaths(robot, context, config);
     return context.github.repos.createStatus(pinCheck);
   }
 
